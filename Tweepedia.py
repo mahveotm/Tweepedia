@@ -52,7 +52,7 @@ def tweepedia():
         data= json_extract
         data = data[:240]
         api.update_status('@' + mention.user.screen_name +
-            data+'...'+website, mention.id)
+            data + '...' + website, mention.id)
 
 while True:
     tweepedia()

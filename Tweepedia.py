@@ -33,9 +33,9 @@ def store_last_seen_id(last_seen_id, file_name):
 def tweepedia():
 
 
-	last_seen_id = retrieve_last_seen_id(FILE_NAME)
+    last_seen_id = retrieve_last_seen_id(FILE_NAME)
     #reading the mentions and responding
-	mentions = api.mentions_timeline(
+    mentions = api.mentions_timeline(
             	last_seen_id,
             	tweet_mode='extended')
     for mention in reversed(mentions):

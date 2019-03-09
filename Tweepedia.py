@@ -30,7 +30,7 @@ def store_last_seen_id(last_seen_id, file_name):
     f_write.close()
     return
 
-def reply_to_tweets():
+def tweepedia():
 
 
 	last_seen_id = retrieve_last_seen_id(FILE_NAME)
@@ -55,5 +55,5 @@ def reply_to_tweets():
             data+'...'+website, mention.id)
 
 while True:
-    reply_to_tweets()
+    tweepedia()
 time.sleep(15)

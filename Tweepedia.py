@@ -10,12 +10,11 @@ CONSUMER_SECRET ='consumer secret goes here'
 ACCESS_KEY ='access key goes here'
 ACCESS_SECRET = 'access secret goes here'
 
-#set up fpr authentication with tweepy
+#create a file that stores the tweet ID, to avoid responding to the same tweet multiple times
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth)
 
-#create a file that stores the tweet ID, to avoid responding to the same tweet multiple times
 FILE_NAME = 'last_seen_id.txt'
 
 def retrieve_last_seen_id(file_name):
@@ -42,18 +41,44 @@ def tweepedia():
         print(str(mention.id) + ' - ' + mention.full_text)
         last_seen_id = mention.id
         store_last_seen_id(last_seen_id, FILE_NAME)
-        article = mention
+        mtn = mention.full_text
+        glo = str(mtn.strip().lstrip("@mahveo_"))
+        article = str(glo.strip().lstrip())
+        airtel =article.replace(" ", "_")
         link = 'https://en.wikipedia.org/api/rest_v1/page/summary/'
         web = 'https://en.wikipedia.org/wiki/'
         url = link + article + '?redirect=true'
-        website = web + article
+        website = web + airtel
         json_data = requests.get(url).json()
         json_extract = json_data['extract']
         data= json_extract
-        data = data[:240]
-        api.update_status('@' + mention.user.screen_name +
-            data + '...' + website, mention.id)
+        data = data[:230]
+        api.update_status('@' + mention.user.screen_name + ' ' +
+            data+'...'+website, mention.id)
+
+def not_exist():
+
+    last_seen_id = retrieve_last_seen_id(FILE_NAME)
+    #reading the mentions and responding
+    mentions = api.mentions_timeline(
+                last_seen_id,
+                tweet_mode='extended')
+    for mention in reversed(mentions):
+        print(str(mention.id) + ' - ' + mention.full_text)
+        last_seen_id = mention.id
+        store_last_seen_id(last_seen_id, FILE_NAME)
+        mtn = mention.full_text
+        article = str(mtn.strip().lstrip("@mahveo_"))
+        api.update_status('@' + mention.user.screen_name + ' ' +
+            'Unfortunately, Wikipedia does not have an article about the subject right now')
+        print('article does not exist')
+
 
 while True:
-    tweepedia()
-time.sleep(15)
+    try:
+        tweepedia()
+        time.sleep(15)
+    except:
+        not_exist()
+        time.sleep(30)
+

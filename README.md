@@ -7,7 +7,7 @@ The following would be imported and/or are required
 *Developers access on twitter
 *Tweepy(pip install tweepy)
 *Requests(pip install requests)
-*urllib.parse(pip urllib.parse -called urlparse in python2.7 and lower)
+*urllib.parse(pip install urllib.parse -called urlparse in python2.7 and lower)
 
 Goodluck!
 

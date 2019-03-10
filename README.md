@@ -11,8 +11,6 @@ The following would be imported and/or are required
 
 Goodluck!
 
-Kindly contact https://twitter.com/mahveo_ for questions/comments
-
 Warm regards,
 with love.....
 Marv

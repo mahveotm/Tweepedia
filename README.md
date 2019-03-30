@@ -11,7 +11,7 @@ The following would be imported and/or are required
 *Requests(pip install requests)
 *urllib.parse(pip install urllib.parse -called urlparse in python2.7 and lower)
 
-I blogged about it here https://mahveotm.github.io/2019-03-10-tweepedia/, please check it out.
+I blogged about it **[here](https://mahveotm.github.io/2019-03-10-tweepedia/)**, please check it out.
 Goodluck!
 
 Warm regards,
